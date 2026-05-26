@@ -1,16 +1,7 @@
-using UnityEngine;
-
-public class EventsStruct : MonoBehaviour
+namespace PVG
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public struct OnGenerationStepFinished
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
