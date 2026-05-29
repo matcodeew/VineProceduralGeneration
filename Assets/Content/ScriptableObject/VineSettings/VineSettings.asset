@@ -16,5 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7d351d5f03c752844a5040ac6c28960b, type: 2}
   - {fileID: 11400000, guid: 984bdacfc860c5849bca53bc4eedc8f8, type: 2}
   - {fileID: 11400000, guid: b2d1795493434f34f92640d35ee62fb1, type: 2}
-  - {fileID: 11400000, guid: c4b588368d7cce342932551ac5437ba6, type: 2}
-  maxLifeTime: 50
+  - {fileID: 11400000, guid: dccb4a880d22f8342aebc01a4431ba7e, type: 2}
+  maxLifeTime: 5

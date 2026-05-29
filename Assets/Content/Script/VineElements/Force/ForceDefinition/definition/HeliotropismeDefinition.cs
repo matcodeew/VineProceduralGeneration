@@ -12,7 +12,7 @@ namespace PVG
 
         public override ForceInstance CreateInstance(Particle particle, WorldContext _worldCtx)
         {
-            return new HeliotropismInstance(particle, this, _worldCtx);
+            return new HeliotropismInstance(particle, this, _worldCtx);   
         }
     }
 }

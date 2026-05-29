@@ -25,10 +25,5 @@ namespace PVG
 
             return (baseWind + turbulence) * definition.forceMultipliyer;
         }
-
-        public override Vector3 GetDebugDirection(Particle p)
-        {
-            return Evaluate();
-        }
     }
 }

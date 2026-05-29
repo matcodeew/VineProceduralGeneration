@@ -22,6 +22,6 @@ namespace PVG
         {
             return particle.state.isAlive;
         }
-        public abstract Vector3 GetDebugDirection(Particle p);
+        public virtual Vector3 GetDebugDirection(Particle p) => Evaluate();
     }
 }

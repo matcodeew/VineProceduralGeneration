@@ -57,10 +57,5 @@ namespace PVG
 
             return finalDirection * helioDef.strength * helioDef.forceMultipliyer;
         }
-
-        public override Vector3 GetDebugDirection(Particle p)
-        {
-            return Evaluate();
-        }
     }
 }

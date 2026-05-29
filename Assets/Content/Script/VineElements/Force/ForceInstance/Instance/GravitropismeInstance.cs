@@ -18,10 +18,5 @@ namespace PVG
                 * gravityDef.gravityValue
                 * def.forceMultipliyer;
         }
-
-        public override Vector3 GetDebugDirection(Particle p)
-        {
-            return Evaluate();
-        }
     }
 }

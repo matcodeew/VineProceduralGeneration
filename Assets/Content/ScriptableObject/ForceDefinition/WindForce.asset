@@ -20,4 +20,4 @@ MonoBehaviour:
   windDirection: {x: 0, y: 0, z: 0}
   windStrength: 1
   turbulenceStrength: 5
-  turbulenceFrequency: 0.25
+  turbulenceFrequency: 0.01

@@ -19,6 +19,7 @@ namespace PVG
         public bool drawForces = true;
         public bool drawTrail = true;
         public bool drawPosition = true;
+        public bool drawGrid = true;
 
         // Une liste de positions par particle
         private readonly Dictionary<Particle, List<Vector3>> _particleTrails = new();
@@ -81,6 +82,9 @@ namespace PVG
 
                 if (drawForces)
                     DrawForces(particle);
+
+                if (drawGrid)
+                    DrawOccupancyGrid();
             }
         }
 
@@ -111,6 +115,7 @@ namespace PVG
             if (particle.forceSystem.forces == null)
                 return;
 
+            Vector3 accumulatedForce = Vector3.zero;
             foreach (ForceInstance force in particle.forceSystem.forces)
             {
                 if (force == null || force.def == null)
@@ -126,7 +131,53 @@ namespace PVG
                     particle.physics.position,
                     particle.physics.position + dir * forceScale
                 );
+
+                accumulatedForce += dir;
+            }
+            Gizmos.color = Color.black;
+
+            Gizmos.DrawLine(
+                particle.physics.position,
+                particle.physics.position + accumulatedForce * forceScale
+            );
+        }
+
+        void DrawOccupancyGrid()
+        {
+            if (targetParticles == null || targetParticles.Count == 0)
+                return;
+
+            Particle source = null;
+            foreach (Particle p in targetParticles)
+            {
+                if (p != null) { source = p; break; }
+            }
+            if (source == null) return;
+
+            OccupancyGridSystem grid = source.worldCtx.occupencySystem;
+            if (grid == null) return;
+
+            float cellSize = grid.cellSize;
+            Vector3 halfCell = Vector3.one * cellSize * 0.5f;
+
+            foreach (var kvp in grid.cells)
+            {
+                Vector3Int key = kvp.Key;
+                float density = kvp.Value;
+
+                Vector3 worldPos = new Vector3(
+                    key.x * cellSize + halfCell.x,
+                    key.y * cellSize + halfCell.y,
+                    key.z * cellSize + halfCell.z
+                );
+
+                float t = Mathf.Clamp01(density / grid.densityColorScale);
+                Gizmos.color = Color.Lerp(grid.emptyCellColor, grid.occupiedCellColor, t);
+                Gizmos.DrawCube(worldPos, Vector3.one * cellSize * 0.9f);
+                Gizmos.color = new Color(0f, 0f, 0f, 0.2f);
+                Gizmos.DrawWireCube(worldPos, Vector3.one * cellSize);
             }
         }
+
     }
 }

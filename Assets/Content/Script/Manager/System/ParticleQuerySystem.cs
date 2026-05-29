@@ -21,7 +21,7 @@ namespace PVG
                 float distance = Vector3.Distance(startPosition, particle.GetPosition);
                 if (distance > range)
                     continue;
-                registerParticle.Add(particle.GetParticle);
+                registerParticle.Add(particle.GetSelf);
             }
             return registerParticle;
         }
